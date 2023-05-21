@@ -30,6 +30,10 @@ async function run() {
     const ToyCollection = client.db("legoSet").collection("toys");
     // const bookingCollection = client.db("carDoctor").collection("bookings");
 
+    app.get("/", async (req, res) => {
+      res.send("Server is working");
+    })
+
     app.get("/toys", async (req, res) => {
       const result = await ToyCollection.find().toArray();
       res.send(result);
