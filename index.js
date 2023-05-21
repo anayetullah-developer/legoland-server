@@ -64,6 +64,28 @@ async function run() {
       res.send(result);
     })
 
+    app.patch("/updateToy/:id", async (req, res) => {
+      const id = req.params.id;
+      const body = req.body;
+      console.log(body)
+      const query = {_id: new ObjectId(id)}
+      const updateToy = {
+        $set: {
+          productName: body.productName,
+          url: body.url,
+          price: body.price,
+          description: body.description,
+          color: body.color,
+          rating: body.rating,
+          subCategory: body.subCategory,
+          quantity: body.quantity
+        }
+      }
+      const result = await ToyCollection.updateOne(query, updateToy);
+      res.send(result);
+
+    })
+
   
 
    // Send a ping to confirm a successful connection
