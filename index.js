@@ -3,13 +3,11 @@ const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config()
 const app = express();
-const port = process.env.PORT || 5005;
+const port = process.env.PORT || 2000;
 
 app.use(cors());
 app.use(express.json());
 
-
-console.log(process.env.DB_USER);
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.kkdykse.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -101,10 +99,6 @@ async function run() {
 }
 run().catch(console.dir);
 
-
- app.get("/", (req, res) => {
-    res.send('Server working')
- })
 
  app.listen(port, () => {
     console.log(port);
