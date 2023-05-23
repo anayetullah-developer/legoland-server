@@ -56,6 +56,12 @@ async function run() {
       res.send(result);
     });
 
+    app.get("/toys/:category", async (req, res) => {
+      console.log(req.params.category);
+      const result = await ToyCollection.find({subCategory: req.params.category}).toArray();
+      res.send(result);
+    })
+
     app.get("/productSearch/:text", async (req, res) => {
       const searchQuery = req.params.text;
 
